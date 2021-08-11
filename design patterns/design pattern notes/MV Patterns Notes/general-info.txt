@@ -1,0 +1,30 @@
+Design Patterns(web dev simplified)
+https://www.youtube.com/playlist?list=PLZlA0Gpn_vH_CthENcPCM0Dww6a5XYC7f
+
+design patterns(dev sage)
+https://www.youtube.com/playlist?list=PLREW9ZuU80uTfmxo61-acnUYk3P_4plIF
+
+JavaScript Patterns: The Traditional Module Pattern
+https://www.youtube.com/watch?v=SKBmJ9P6OAk
+
+https://www.youtube.com/playlist?list=PLREW9ZuU80uTfmxo61-acnUYk3P_4plIF
+
+Design patterns in js book
+https://addyosmani.com/resources/essentialjsdesignpatterns/book/
+
+----------------
+----------------
+----------------
+NOTES START HERE
+----------------
+----------------
+----------------
+What is a JavaScript MV* Patterns?
+
+A architectural patterns for structuring applications
+---
+---
+---
+MVC (Model-View-Controller),
+MVP (Model-View-Presenter),
+MVVM (Model-View-ViewModel).

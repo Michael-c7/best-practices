@@ -1,0 +1,10 @@
+Dependency Inversion Principle
+---
+
+WHAT:
+dont want high level code to depend upon
+low level implementation of you dependancys code
+
+create a wrapper around external dependancys you have
+so that way your code depends on the wrapper you created not the
+implementation of the details for the dependancy your using

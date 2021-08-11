@@ -1,0 +1,51 @@
+The Facade Pattern
+
+idea behind this pattern is to make your code easy to change in the future
+- Clean up your code
+- makes it easy to change your implimentation of your code
+(eg: fetch api to axios fetch libray)
+- only have to change your code in one place
+- take an ugy hard to use api into a clean easy to use api
+
+
+disadvantages:
+1.Is the cost of abstraction your Facade offers
+to your implimentation justifiable?
+
+EG:
+function getUsers() {
+    return getFetch('https://jsonplaceholder.typicode.com/users')
+  }
+
+  function getUserPosts(userId) {
+    return getFetch('https://jsonplaceholder.typicode.com/posts', {
+      userId: userId
+    })
+  }
+
+  getUsers().then(users => {
+    users.forEach(user => {
+      getUserPosts(user.id).then(posts => {
+        console.log(user.name)
+        console.log(posts.length)
+      })
+    })
+  })
+
+  // function getFetch(url, params = {}) {
+  //   const queryString = Object.entries(params).map(param => {
+  //     return `${param[0]}=${param[1]}`
+  //   }).join('&')
+  //   return fetch(`${url}?${queryString}`, {
+  //     method: "GET",
+  //     headers: { "Content-Type": "application/json" }
+  //   }).then(res => res.json())
+  // }
+
+  function getFetch(url, params = {}) {
+    return axios({
+      url: url,
+      method: "GET",
+      params: params
+    }).then(res => res.data)
+  }

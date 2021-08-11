@@ -1,0 +1,25 @@
+MVP (Model-View-Presenter)
+
+What:
+A derivative of the MVC design pattern
+which focuses on improving presentation logic.
+
+MVPs main diffrence from the MVC is
+view & model dont have any interaction
+
+
+MVP is generally used most often in enterprise-level
+applications where it's necessary to reuse as much
+presentation logic as possible.
+
+
+In MVP, all of this complex logic can be encapsulated in a presenter,
+which can simplify maintenance greatly.
+
+Concerns we may have with MVC will likely hold true
+for MVP given that the differences between them are mainly semantic.
+As long as we are cleanly separating concerns
+into models, views and controllers (or presenters)
+we should be achieving most of the same benefits
+regardless of the variation we opt for.
+

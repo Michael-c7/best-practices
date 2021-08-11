@@ -1,0 +1,5 @@
+SOLID Design Principles(web dev simplified)
+https://www.youtube.com/playlist?list=PLZlA0Gpn_vH9kocFX7R7BAe_CvvOCO_p9
+
+
+https://en.wikipedia.org/wiki/SOLID

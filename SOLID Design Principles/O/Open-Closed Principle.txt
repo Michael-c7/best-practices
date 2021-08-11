@@ -1,0 +1,13 @@
+O - Open/Closed Principle
+---
+WHAT:
+have the ability to add new thing without having to make changes,
+your program will automatically know what
+to do without having to add additional code
+
+Another way to put it...
+should be open for extension, but closed for modification
+
+
+- should break your code into
+individual classes, functions, modules, ect...

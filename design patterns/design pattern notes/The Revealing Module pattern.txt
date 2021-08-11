@@ -1,0 +1,60 @@
+Revealing Module pattern
+
+- An inporoved version of the module pattern
+---
+EG:
+var myRevealingModule = (function () {
+ 
+    var privateCounter = 0;
+
+    function privateFunction() {
+        privateCounter++;
+        console.log(privateCounter)
+    }
+
+    function publicFunction() {
+        publicIncrement();
+    }
+
+    function publicIncrement() {
+        privateFunction();
+    }
+
+    function publicGetCount(){
+      return privateCounter;
+    }
+
+    // Reveal public pointers to
+    // private functions and properties
+
+   return {
+        start: publicFunction,
+        increment: publicIncrement,
+        count: publicGetCount
+    };
+
+})();
+
+myRevealingModule.start();
+----
+Advantages
+1. syntax more consistent
+2. what your doing is more clear in the return obj
+
+Disadvantages
+1. A disadvantage of this pattern is that if a private function refers
+to a public function, that public function can't be overridden
+if a patch is necessary. This is because the private function will
+continue to refer to the private implementation and the 
+pattern doesn't apply to public members, only to functions.
+
+2.Public object members which refer to private variables
+are also subject to the no-patch rule notes above.
+
+As a result of this, modules created with the
+Revealing Module pattern may be more fragile than
+those created with the original Module pattern,
+so care should be taken during usage.
+
+
+

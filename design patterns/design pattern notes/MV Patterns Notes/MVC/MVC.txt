@@ -1,0 +1,13 @@
+MVC (Model-View-Controller)
+
+
+What:
+split an app into sections that each have their own purpose
+
+Model: handles all the data.
+View: handles all the presentation.
+Controller: tells the model & view what to do.
+
+
+Why:
+allows us to cleanly separate concerns in an application.

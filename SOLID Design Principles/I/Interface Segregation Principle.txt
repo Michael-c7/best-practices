@@ -1,0 +1,9 @@
+Interface Segregation Principle
+---
+WHAT:
+
+break the Interface(or class if javascript) into individual components
+that you can add to individual class as you need them
+
+each class only implements the info it can use,
+doesnt implement anything else it cant use

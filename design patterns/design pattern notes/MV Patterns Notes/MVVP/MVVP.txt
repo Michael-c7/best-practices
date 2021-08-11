@@ -1,0 +1,33 @@
+MVVM (Model-View-ViewModel)
+
+
+What:
+Attempts to more clearly separate
+the development of the
+UI from the business logic
+of you app
+
+
+
+
+Models: hold information.
+
+View: formats the data.
+
+ViewModel: encapulates the business logic,
+ an be considered a specialized Controller that acts as a data converter.
+ It changes Model information into View information,
+ passing commands from the View to the Model.
+
+The only exception to this rule tends to be validation
+and it’s considered acceptable for Models to validate data
+being used to define or update existing models
+(e.g does an e-mail address being input meet the
+requirements of a particular regular expression?).
+
+
+Views and ViewModels communicate using data-bindings and events.
+ViewModel doesn’t just expose Model attributes but
+also access to other methods and features such as validation.
+
+

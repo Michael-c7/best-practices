@@ -1,0 +1,10 @@
+S - Single Responsibility Principle
+---
+WHAT:
+Your class, modules, functions,ect.. should have a single responsibility,
+have only one reason to change
+---
+WHY:
+To make your code cleaner, easy to use & easy to understand
+---
+

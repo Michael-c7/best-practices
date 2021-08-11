@@ -1,0 +1,193 @@
+The Mixin Pattern
+
+
+What are they:
+In traditional programming languages such as C++ and Lisp,
+Mixins are classes which offer functionality that can be
+easily inherited by a sub-class or group of sub-classes
+for the purpose of function re-use.
+
+Sub-classing is a term that refers to inheriting properties
+for a new object from a base or superclass object.
+
+Should B need to invoke a method in A that has been overridden,
+we refer to this as method chaining.
+
+Should B need to invoke the constructor A (the superclass),
+we call this constructor chaining.
+
+Example of super class & sub class
+Eg:
+// super class
+var Person = function( firstName, lastName ){
+ 
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.gender = "male";
+ 
+};
+// sub class
+// a new instance of Person can then easily be created as follows:
+var clark = new Person( "Clark", "Kent" );
+ 
+// Define a subclass constructor for for "Superhero":
+var Superhero = function( firstName, lastName, powers ){
+ 
+    // Invoke the superclass constructor on the new object
+    // then use .call() to invoke the constructor as a method of
+    // the object to be initialized.
+ 
+    Person.call( this, firstName, lastName );
+ 
+    // Finally, store their powers, a new array of traits not found in a normal "Person"
+    this.powers = powers;
+};
+ 
+Superhero.prototype = Object.create( Person.prototype );
+var superman = new Superhero( "Clark", "Kent", ["flight","heat-vision"] );
+console.log( superman );
+ 
+// Outputs Person attributes as well as powers
+
+
+
+
+
+// Mixins
+
+ we can look at inheriting from Mixins as a means of
+collecting functionality through extension
+
+They can be viewed as objects with attributes and methods
+that can be easily shared across a number of other object prototypes.
+
+We can then easily extend the prototype of existing constructor functions
+to include this behavior.
+
+An example of a utility mixin function:
+Eg:
+ar myMixins = {
+ 
+  moveUp: function(){
+    console.log( "move up" );
+  },
+ 
+  moveDown: function(){
+    console.log( "move down" );
+  },
+ 
+  stop: function(){
+    console.log( "stop! in the name of love!" );
+  }
+ 
+};
+
+
+
+This example will demonstrate howto augment a
+constructor to include functionality
+without the need to duplicate this process
+for every constructor function we might have.
+Eg:
+// Define a simple Car constructor
+var Car = function ( settings ) {
+ 
+    this.model = settings.model || "no model provided";
+    this.color = settings.color || "no colour provided";
+ 
+};
+ 
+// Mixin
+var Mixin = function () {};
+ 
+Mixin.prototype = {
+ 
+    driveForward: function () {
+        console.log( "drive forward" );
+    },
+ 
+    driveBackward: function () {
+        console.log( "drive backward" );
+    },
+ 
+    driveSideways: function () {
+        console.log( "drive sideways" );
+    }
+ 
+};
+ 
+ 
+// Extend an existing object with a method from another
+function augment( receivingClass, givingClass ) {
+ 
+    // only provide certain methods
+    if ( arguments[2] ) {
+        for ( var i = 2, len = arguments.length; i < len; i++ ) {
+            receivingClass.prototype[arguments[i]] = givingClass.prototype[arguments[i]];
+        }
+    }
+    // provide all methods
+    else {
+        for ( var methodName in givingClass.prototype ) {
+ 
+            // check to make sure the receiving class doesn't
+            // have a method of the same name as the one currently
+            // being processed
+            if ( !Object.hasOwnProperty.call(receivingClass.prototype, methodName) ) {
+                receivingClass.prototype[methodName] = givingClass.prototype[methodName];
+            }
+ 
+            // Alternatively (check prototype chain as well):
+            // if ( !receivingClass.prototype[methodName] ) {
+            // receivingClass.prototype[methodName] = givingClass.prototype[methodName];
+            // }
+        }
+    }
+}
+ 
+ 
+// Augment the Car constructor to include "driveForward" and "driveBackward"
+augment( Car, Mixin, "driveForward", "driveBackward" );
+ 
+// Create a new Car
+var myCar = new Car({
+    model: "Ford Escort",
+    color: "blue"
+});
+ 
+// Test to make sure we now have access to the methods
+myCar.driveForward();
+myCar.driveBackward();
+ 
+// Outputs:
+// drive forward
+// drive backward
+ 
+// We can also augment Car to include all functions from our mixin
+// by not explicitly listing a selection of them
+augment( Car, Mixin );
+ 
+var mySportsCar = new Car({
+    model: "Porsche",
+    color: "red"
+});
+ 
+mySportsCar.driveSideways();
+ 
+// Outputs:
+// drive sideways
+
+
+
+Advantages of a mixin
+  1. decrease code repetition
+  2. increase function re-use
+
+Disadvantages(more debatable)
+  1. Injecting functionality into an object prototype is a bad idea,
+  because this leads to prototype pollution &
+  a level of uncertainty regarding the origin of our functions,
+  In large systems this may well be the case.
+
+strong documentation can assist in minimizing the
+amount of confusion regarding the source of mixed in functions

@@ -1,0 +1,167 @@
+Design Patterns(web dev simplified)
+https://www.youtube.com/playlist?list=PLZlA0Gpn_vH_CthENcPCM0Dww6a5XYC7f
+
+design patterns(dev sage)
+https://www.youtube.com/playlist?list=PLREW9ZuU80uTfmxo61-acnUYk3P_4plIF
+
+JavaScript Patterns: The Traditional Module Pattern
+https://www.youtube.com/watch?v=SKBmJ9P6OAk
+
+https://www.youtube.com/playlist?list=PLREW9ZuU80uTfmxo61-acnUYk3P_4plIF
+
+Design patterns in js book
+https://addyosmani.com/resources/essentialjsdesignpatterns/book/
+
+----------------
+----------------
+----------------
+NOTES START HERE
+----------------
+----------------
+----------------
+What is a Pattern?
+A pattern is a reusable solution that can be applied
+to commonly occurring problems in software design
+---
+Design patterns have three main benefits:
+1. patterns are proven solutions
+2. can be reused easily
+3. can explain a conplex solution in simple terms
+---
+Patterns are not an exact solution.
+It’s important that we remember the role of a pattern
+is merely to provide us with a solution scheme.
+- they only support software design
+---
+Proto-pattern
+a design pattern thats not been heavily vetted due to its young age.
+---
+anti-patterns:
+an anti-pattern is a bad design that is worthy of documenting
+
+Example of an anti-pattern:
+EG: Polluting the global namespace by defining
+a large number of variables in the global context
+
+EG: Passing strings rather than functions to either
+setTimeout or setInterval as this triggers the use of eval() internally.
+---
+3 main types of desin patterns
+1.Creational Design Patterns
+   -Focus on handling object creation mechanisms,
+   where objects are created in a suitable manner for the task your working on.
+
+Patterns that fall under this category include:
+Decorator, Facade, Flyweight, Adapter and Proxy.
+
+
+2.Structural Design Patterns
+  -Focused on how objects are created & typically looks
+  for ways to create a relationship between different objects.
+  Help ensure when one part of the system changes,
+  entire structure of the the system won't need to do the same.
+
+Patterns that fall under this category include:
+Decorator, Facade, Flyweight, Adapter and Proxy.
+
+
+3.Behavioral Design Patterns
+   -Focuses on improving the communication between
+    diffrent object in a system.
+
+Some behavioral patterns include:
+Iterator, Mediator, Observer and Visitor.
+---
+---
+---
+Can use object to encapulate data
+EG:
+var myModule = {
+ 
+  myProperty: "someValue",
+ 
+  // object literals can contain properties and methods.
+  // e.g we can define a further object for module configuration:
+  myConfig: {
+    useCaching: true,
+    language: "en"
+  },
+ 
+  // a very basic method
+  saySomething: function () {
+    console.log( "Where in the world is Paul Irish today?" );
+  },
+ 
+  // output a value based on the current configuration
+  reportMyConfig: function () {
+    console.log( "Caching is: " + ( this.myConfig.useCaching ? "enabled" : "disabled") );
+  },
+ 
+  // override the current configuration
+  updateMyConfig: function( newConfig ) {
+ 
+    if ( typeof newConfig === "object" ) {
+      this.myConfig = newConfig;
+      console.log( this.myConfig.language );
+    }
+  }
+};
+ 
+// Outputs: Where in the world is Paul Irish today?
+myModule.saySomething();
+ 
+// Outputs: Caching is: enabled
+myModule.reportMyConfig();
+ 
+// Outputs: fr
+myModule.updateMyConfig({
+  language: "fr",
+  useCaching: false
+});
+ 
+// Outputs: Caching is: disabled
+myModule.reportMyConfig();
+---
+---
+---
+---
+---
+Module Pattern Variations
+---
+this variation allow you to import things from the global scope
+EG:
+// Global module
+var myModule = (function ( jQ, _ ) {
+ 
+    function privateMethod1(){
+        jQ(".container").html("test");
+    }
+ 
+    function privateMethod2(){
+      console.log( _.min([10, 5, 100, 2, 1000]) );
+    }
+ 
+    return{
+        publicMethod: function(){
+            privateMethod1();
+        }
+    };
+ 
+// Pull in jQuery and Underscore
+})( jQuery, _ );
+ 
+myModule.publicMethod();
+---
+---
+---
+Module pattern Advantages
+1.clean looking
+2. allows for private data
+
+Module pattern Disadvantages
+1. Cant access private stuff in the methods that
+are added to the object at a later point
+
+2. inability to create automated unit tests
+for private members and
+additional complexity when bugs require hot fixes

@@ -1,0 +1,42 @@
+The Decorator Pattern
+
+What:
+- A structural design pattern, simliar to mixins.
+Can be considered another viable alternative to object sub-classing.
+
+- They can be used to modify existing systems where we wish to
+add additional features to objects without the need to heavily
+modify the underlying code using them.
+
+- The Decorator pattern isn't heavily tied to how objects are
+created but instead focuses on the problem of extending their functionality
+Rather than just relying on prototypal inheritance,
+we work with a single base object and progressively
+add decorator objects which provide the additional capabilities. 
+
+- The idea is to add(decorate) properties & methods to a base object
+instead of a sub class to make it more streamlined.
+
+
+
+
+Why:
+- A common reason why developers use them is their applications
+may contain features requiring a large quantity of distinct types of object.
+
+
+
+Advantages
+ 1. fairly flexable
+ 2. An object can be decorated w/ new behavior & continues
+ to be used w/out nedding to worry about the base object being modified
+ 3. Don't need to rely on large number of subclasses
+ to get the same type of benefits
+
+Disadvantages
+ 1. if poorly managed,  can significantly complicate our application
+ architecture as it introduces many small,
+ but similar objects into our namespace
+
+
+

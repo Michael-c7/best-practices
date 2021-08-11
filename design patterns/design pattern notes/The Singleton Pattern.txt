@@ -1,0 +1,72 @@
+The Singleton Pattern
+
+- its an object that shared among
+many diffrent resoureces in your app without
+re-creating the object
+- can and will only have one type of this object instantiated
+
+
+disadvantage 
+1. can make it difficult to test the app
+
+2. app dependent on the one object so it can be hard to refactor the object
+
+3. changing things in your app in diffrent parts of your app at the same can
+cause data to get overridden or not read correctly, becuase their all
+trying to access the same info all at once.
+---
+use case
+1. sets of small info that need to be shared throughout the entire app.
+
+An example:
+EG:
+var SingletonTester = (function () {
+ 
+  // options: an object containing configuration options for the singleton
+  // e.g var options = { name: "test", pointX: 5};
+  function Singleton( options ) {
+ 
+    // set options to the options supplied
+    // or an empty object if none are provided
+    options = options || {};
+ 
+    // set some properties for our singleton
+    this.name = "SingletonTester";
+ 
+    this.pointX = options.pointX || 6;
+ 
+    this.pointY = options.pointY || 10;
+ 
+  }
+ 
+  // our instance holder
+  var instance;
+ 
+  // an emulation of static variables and methods
+  var _static = {
+ 
+    name: "SingletonTester",
+ 
+    // Method for getting an instance. It returns
+    // a singleton instance of a singleton object
+    getInstance: function( options ) {
+      if( instance === undefined ) {
+        instance = new Singleton( options );
+      }
+ 
+      return instance;
+ 
+    }
+  };
+ 
+  return _static;
+ 
+})();
+ 
+var singletonTest = SingletonTester.getInstance({
+  pointX: 5
+});
+ 
+// Log the output of pointX just to verify it is correct
+// Outputs: 5
+console.log( singletonTest.pointX );

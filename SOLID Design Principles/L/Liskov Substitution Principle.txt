@@ -1,0 +1,18 @@
+Liskov Substitution Principle
+----
+WHAT:
+anywhere you use one type of class
+you need to able to use every sub class
+of that initial class and it should work
+
+
+
+A duck can swim & fly,
+cant inherit from 2 diffrent classes,
+only 1 class
+
+- would need to create a thrid class flyingSwimingBird,
+wont wokr well when you have a lot of diffrent variation.
+
+composition: adding in functionality instead of inheritiing functionality
+- this is the solution to complex inheritence trees
